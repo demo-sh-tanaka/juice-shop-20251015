@@ -22,7 +22,7 @@ export { default as isWindows } from './is-windows'
 // import isGitpod from 'is-gitpod' // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolve
 const isGitpod = () => false
 
-const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
 export const queryResultToJson = <T>(
   data: T,
@@ -68,7 +68,7 @@ export const trunc = function (str: string, length: number) {
 export const version = (module?: string) => {
   if (module) {
     // @ts-expect-error FIXME Ignoring any type issue on purpose
-    return packageJson.dependencies[module]
+    return packageJson.dependencies[module];
   } else {
     return packageJson.version
   }
@@ -131,8 +131,8 @@ export const jwtFrom = ({ headers }: { headers: any }) => {
   if (headers?.authorization) {
     const parts = headers.authorization.split(' ')
     if (parts.length === 2) {
-      const scheme = parts[0]
-      const token = parts[1]
+      const scheme = parts[0];
+      const token = parts[1];
 
       if (/^Bearer$/i.test(scheme)) {
         return token
@@ -196,7 +196,7 @@ export function isChallengeEnabled (challenge: Challenge): boolean {
 
 export const parseJsonCustom = (jsonString: string) => {
   const parser = clarinet.parser()
-  const result: any[] = []
+  const result: any[] = [];
   parser.onkey = parser.onopenobject = (k: any) => {
     result.push({ key: k, value: null })
   }

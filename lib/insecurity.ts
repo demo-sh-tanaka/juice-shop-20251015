@@ -3,16 +3,16 @@
  * SPDX-License-Identifier: MIT
  */
 
-import fs from 'node:fs'
-import crypto from 'node:crypto'
-import { type Request, type Response, type NextFunction } from 'express'
-import { type UserModel } from 'models/user'
-import expressJwt from 'express-jwt'
-import jwt from 'jsonwebtoken'
-import jws from 'jws'
-import sanitizeHtmlLib from 'sanitize-html'
-import sanitizeFilenameLib from 'sanitize-filename'
-import * as utils from './utils'
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import { type Request, type Response, type NextFunction } from 'express';
+import { type UserModel } from 'models/user';
+import expressJwt from 'express-jwt';
+import jwt from 'jsonwebtoken';
+import jws from 'jws';
+import sanitizeHtmlLib from 'sanitize-html';
+import sanitizeFilenameLib from 'sanitize-filename';
+import * as utils from './utils';
 
 /* jslint node: true */
 // eslint-disable-next-line @typescript-eslint/prefer-ts-expect-error
@@ -108,9 +108,9 @@ export const discountFromCoupon = (coupon?: string) => {
   const decoded = z85.decode(coupon)
   if (decoded && (hasValidFormat(decoded.toString()) != null)) {
     const parts = decoded.toString().split('-')
-    const validity = parts[0]
+    const validity = parts[0];
     if (utils.toMMMYY(new Date()) === validity) {
-      const discount = parts[1]
+      const discount = parts[1];
       return parseInt(discount)
     }
   }

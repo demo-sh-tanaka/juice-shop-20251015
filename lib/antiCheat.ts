@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-import config from 'config'
-import colors from 'colors/safe'
+import config from 'config';
+import colors from 'colors/safe';
 import { retrieveCodeSnippet } from '../routes/vulnCodeSnippet'
 import { readFixes } from '../routes/vulnCodeFixes'
 import { type Challenge } from '../data/types'
@@ -23,7 +23,7 @@ const coupledChallenges = { // TODO prevent also near-identical challenges (e.g.
   uploadSizeChallenge: ['uploadTypeChallenge', 'xxeFileDisclosureChallenge', 'xxeDosChallenge', 'yamlBombChallenge'],
   uploadTypeChallenge: ['uploadSizeChallenge', 'xxeFileDisclosureChallenge', 'xxeDosChallenge', 'yamlBombChallenge']
 }
-const trivialChallenges = ['errorHandlingChallenge', 'privacyPolicyChallenge', 'closeNotificationsChallenge']
+const trivialChallenges = ['errorHandlingChallenge', 'privacyPolicyChallenge', 'closeNotificationsChallenge'];
 
 const solves: Array<{ challenge: any, phase: string, timestamp: Date, cheatScore: number }> = [{ challenge: {}, phase: 'server start', timestamp: new Date(), cheatScore: 0 }] // seed with server start timestamp
 
@@ -133,7 +133,7 @@ function isTrivial (challenge: Challenge) {
 }
 
 function previous () {
-  return solves[solves.length - 1]
+  return solves[solves.length - 1];
 }
 
 const checkForIdenticalSolvedChallenge = async (challenge: Challenge): Promise<boolean> => {

@@ -1,5 +1,5 @@
 // Credit for the implementation in JS: https://github.com/daviddossantos/sequelize-notupdate-attributes
-import { type Model, type ValidationErrorItemType } from 'sequelize/types'
+import { type Model, type ValidationErrorItemType } from 'sequelize/types';
 import { type ValidationOptions } from 'sequelize/types/instance-validator'
 // @ts-expect-error FIXME due to non-existing type definitions for sequelize/lib/errors
 import { ValidationError, ValidationErrorItem } from 'sequelize/lib/errors'
@@ -20,7 +20,7 @@ export const makeKeyNonUpdatable = (model: Model, column: string) => {
 
     if (instance.isNewRecord) return
 
-    const changedKeys: unknown[] = []
+    const changedKeys: unknown[] = [];
 
     const instanceChanged = Array.from(instance._changed)
 
@@ -28,10 +28,10 @@ export const makeKeyNonUpdatable = (model: Model, column: string) => {
 
     if (changedKeys.length === 0) return
 
-    const validationErrors: ValidationErrorItemType[] = []
+    const validationErrors: ValidationErrorItemType[] = [];
 
     changedKeys.forEach((fieldName: any) => {
-      const fieldDefinition = instance.rawAttributes[fieldName]
+      const fieldDefinition = instance.rawAttributes[fieldName];
 
       if (
         instance._previousDataValues[fieldName] !== undefined &&

@@ -1,5 +1,5 @@
-import { readFiles, checkDiffs, getDataFromFile, checkData, seePatch } from './rsnUtil'
-import colors from 'colors/safe'
+import { readFiles, checkDiffs, getDataFromFile, checkData, seePatch } from './rsnUtil';
+import colors from 'colors/safe';
 
 const keys = readFiles()
 checkDiffs(keys)

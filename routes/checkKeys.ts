@@ -1,19 +1,19 @@
-import { type Request, type Response } from 'express'
-import { HDNodeWallet } from 'ethers'
-import * as challengeUtils from '../lib/challengeUtils'
-import * as utils from '../lib/utils'
-import { challenges } from '../data/datacache'
+import { type Request, type Response } from 'express';
+import { HDNodeWallet } from 'ethers';
+import * as challengeUtils from '../lib/challengeUtils';
+import * as utils from '../lib/utils';
+import { challenges } from '../data/datacache';
 
 export function checkKeys () {
   return (req: Request, res: Response) => {
     try {
-      const mnemonic = 'purpose betray marriage blame crunch monitor spin slide donate sport lift clutch'
+      const mnemonic = 'purpose betray marriage blame crunch monitor spin slide donate sport lift clutch';
       const mnemonicWallet = HDNodeWallet.fromPhrase(mnemonic)
-      const privateKey = mnemonicWallet.privateKey
-      const publicKey = mnemonicWallet.publicKey
+      const privateKey = mnemonicWallet.privateKey;
+      const publicKey = mnemonicWallet.publicKey;
       const address = mnemonicWallet.address
       challengeUtils.solveIf(challenges.nftUnlockChallenge, () => {
-        return req.body.privateKey === privateKey
+        return req.body.privateKey === privateKey;
       })
       if (req.body.privateKey === privateKey) {
         res.status(200).json({ success: true, message: 'Challenge successfully solved', status: challenges.nftUnlockChallenge })

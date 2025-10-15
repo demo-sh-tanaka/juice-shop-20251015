@@ -1,9 +1,9 @@
-import { defineConfig } from 'cypress'
-import * as security from './lib/insecurity'
-import config from 'config'
-import type { Memory as MemoryConfig, Product as ProductConfig } from './lib/config.types'
-import * as utils from './lib/utils'
-import * as otplib from 'otplib'
+import { defineConfig } from 'cypress';
+import * as security from './lib/insecurity';
+import config from 'config';
+import type { Memory as MemoryConfig, Product as ProductConfig } from './lib/config.types';
+import * as utils from './lib/utils';
+import * as otplib from 'otplib';
 
 export default defineConfig({
   projectId: '3hrkhu',
@@ -25,8 +25,8 @@ export default defineConfig({
         GetBlueprint () {
           for (const product of config.get<ProductConfig[]>('products')) {
             if (product.fileForRetrieveBlueprintChallenge) {
-              const blueprint = product.fileForRetrieveBlueprintChallenge
-              return blueprint
+              const blueprint = product.fileForRetrieveBlueprintChallenge;
+              return blueprint;
             }
           }
         },
@@ -42,12 +42,12 @@ export default defineConfig({
           const couponIntent = trainingData.data.filter(
             (data: { intent: string }) => data.intent === 'queries.couponCode'
           )[0]
-          return couponIntent
+          return couponIntent;
         },
         GetFromMemories (property: string) {
           for (const memory of config.get<MemoryConfig[]>('memories') as any) {
             if (memory[property]) {
-              return memory[property]
+              return memory[property];
             }
           }
         },
@@ -66,7 +66,7 @@ export default defineConfig({
           const products = config.get<ProductConfig[]>('products')
           for (let i = 0; i < products.length; i++) {
             if (products[i].urlForProductTamperingChallenge) {
-              return i + 1
+              return i + 1;
             }
           }
         },

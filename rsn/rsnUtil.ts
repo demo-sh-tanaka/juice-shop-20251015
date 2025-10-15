@@ -1,11 +1,11 @@
-import fs from 'node:fs'
-import colors from 'colors/safe'
-import { diffLines, structuredPatch } from 'diff'
+import fs from 'node:fs';
+import colors from 'colors/safe';
+import { diffLines, structuredPatch } from 'diff';
 
-import { retrieveCodeSnippet } from '../routes/vulnCodeSnippet'
+import { retrieveCodeSnippet } from '../routes/vulnCodeSnippet';
 
-const fixesPath = 'data/static/codefixes'
-const cacheFile = 'rsn/cache.json'
+const fixesPath = 'data/static/codefixes';
+const cacheFile = 'rsn/cache.json';
 
 type CacheData = Record<string, {
   added: number[]
@@ -29,7 +29,7 @@ function getDataFromFile () {
 
 function filterString (text: string) {
   text = text.replace(/\r/g, '')
-  return text
+  return text;
 }
 
 const checkDiffs = async (keys: string[]) => {
@@ -49,11 +49,11 @@ const checkDiffs = async (keys: string[]) => {
         process.stdout.write(val + ': ')
         const fileData = fs.readFileSync(fixesPath + '/' + val).toString()
         const diff = diffLines(filterString(fileData), filterString(snippet.snippet))
-        let line = 0
+        let line = 0;
         for (const part of diff) {
           if (!part.count) continue
           if (part.removed) continue
-          const prev = line
+          const prev = line;
           line += part.count
           if (!(part.added)) continue
           for (let i = 0; i < part.count; i++) {
@@ -69,17 +69,17 @@ const checkDiffs = async (keys: string[]) => {
           }
         }
         line = 0
-        let norm = 0
+        let norm = 0;
         for (const part of diff) {
           if (!part.count) continue
           if (part.added) {
             norm--
             continue
           }
-          const prev = line
+          const prev = line;
           line += part.count
           if (!(part.removed)) continue
-          let temp = norm
+          let temp = norm;
           for (let i = 0; i < part.count; i++) {
             if (!snippet.vulnLines.includes(prev + i + 1 - norm) && !snippet.neutralLines.includes(prev + i + 1 - norm)) {
               process.stdout.write(colors.green(colors.inverse((prev + i + 1 - norm + ''))))
@@ -100,7 +100,7 @@ const checkDiffs = async (keys: string[]) => {
         console.log(err)
       })
   }
-  return data
+  return data;
 }
 
 async function seePatch (file: string) {
@@ -124,7 +124,7 @@ async function seePatch (file: string) {
 }
 
 function checkData (data: CacheData, fileData: CacheData) {
-  const filesWithDiff = []
+  const filesWithDiff = [];
   for (const key in data) {
     const fileDataValueAdded = fileData[key].added.sort((a, b) => a - b)
     const dataValueAdded = data[key].added.sort((a, b) => a - b)
@@ -144,7 +144,7 @@ function checkData (data: CacheData, fileData: CacheData) {
       filesWithDiff.push(key)
     }
   }
-  return filesWithDiff
+  return filesWithDiff;
 }
 
 export {

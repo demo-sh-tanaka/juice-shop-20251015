@@ -96,7 +96,7 @@ export const findChallengeById = (challengeId: number) => {
 }
 
 export const solveFindIt = async function (key: ChallengeKey, isRestore: boolean = false) {
-  const solvedChallenge = challenges[key]
+  const solvedChallenge = challenges[key];
   await ChallengeModel.update({ codingChallengeStatus: 1 }, { where: { key, codingChallengeStatus: { [Op.lt]: 2 } } })
   logger.info(`${isRestore ? colors.grey('Restored') : colors.green('Solved')} 'Find It' phase of coding challenge ${colors.cyan(solvedChallenge.key)} (${solvedChallenge.name})`)
   if (!isRestore) {
@@ -108,7 +108,7 @@ export const solveFindIt = async function (key: ChallengeKey, isRestore: boolean
 }
 
 export const solveFixIt = async function (key: ChallengeKey, isRestore: boolean = false) {
-  const solvedChallenge = challenges[key]
+  const solvedChallenge = challenges[key];
   await ChallengeModel.update({ codingChallengeStatus: 2 }, { where: { key } })
   logger.info(`${isRestore ? colors.grey('Restored') : colors.green('Solved')} 'Fix It' phase of coding challenge ${colors.cyan(solvedChallenge.key)} (${solvedChallenge.name})`)
   if (!isRestore) {
