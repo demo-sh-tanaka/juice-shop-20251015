@@ -19,7 +19,7 @@ import isDocker from './is-docker'
 import isWindows from './is-windows'
 export { default as isDocker } from './is-docker'
 export { default as isWindows } from './is-windows'
-// import isGitpod from 'is-gitpod') // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolve
+// import isGitpod from 'is-gitpod' // FIXME Roll back to this when https://github.com/dword-design/is-gitpod/issues/94 is resolve
 const isGitpod = () => false
 
 const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
