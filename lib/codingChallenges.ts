@@ -16,7 +16,7 @@ interface CachedCodeChallenge {
 }
 
 export const findFilesWithCodeChallenges = async (paths: readonly string[]): Promise<FileMatch[]> => {
-  const matches = []
+  const matches = [];
   for (const currPath of paths) {
     if ((await fs.lstat(currPath)).isDirectory()) {
       const files = await fs.readdir(currPath)
@@ -70,8 +70,8 @@ function getCodingChallengeFromFileContent (source: string, challengeKey: string
   let lines = snippet.split('\r\n')
   if (lines.length === 1) lines = snippet.split('\n')
   if (lines.length === 1) lines = snippet.split('\r')
-  const vulnLines = []
-  const neutralLines = []
+  const vulnLines = [];
+  const neutralLines = [];
   for (let i = 0; i < lines.length; i++) {
     if (new RegExp(`vuln-code-snippet vuln-line.*${challengeKey}`).exec(lines[i]) != null) {
       vulnLines.push(i + 1)
