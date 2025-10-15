@@ -10,6 +10,10 @@ const injectionChars = /"|'|;|and|or|;|#/i;
 
 export function searchProducts () {
   return (req: Request, res: Response, next: NextFunction) => {
+    if (typeof req.query.q !== "string" && typeof req.query.q !== "undefined") {
+      res.status(400).send();
+      return;
+    }
     let criteria: any = req.query.q === 'undefined' ? '' : req.query.q ?? '';
     criteria = (criteria.length <= 200) ? criteria : criteria.substring(0, 200);
     if (criteria.match(injectionChars)) {
