@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { type ChallengeKey } from 'models/challenge'
-import logger from './logger'
-import colors from 'colors/safe'
+import { type ChallengeKey } from 'models/challenge';
+import logger from './logger';
+import colors from 'colors/safe';
 const solves: Record<string, { 'find it': boolean, 'fix it': boolean, attempts: { 'find it': number, 'fix it': number } }> = {}
 
 type Phase = 'find it' | 'fix it'
@@ -35,28 +35,28 @@ export const totalFixItAccuracy = () => {
 }
 
 export const getFindItAttempts = (challengeKey: ChallengeKey) => {
-  return solves[challengeKey] ? solves[challengeKey].attempts['find it'] : 0
+  return solves[challengeKey] ? solves[challengeKey].attempts['find it'] : 0;
 }
 
 function totalAccuracy (phase: Phase) {
-  let sumAccuracy = 0
-  let totalSolved = 0
+  let sumAccuracy = 0;
+  let totalSolved = 0;
   Object.entries(solves).forEach(([key, value]) => {
     if (value[phase]) {
       sumAccuracy += 1 / value.attempts[phase]
       totalSolved++
     }
   })
-  return sumAccuracy / totalSolved
+  return sumAccuracy / totalSolved;
 }
 
 function calculateAccuracy (challengeKey: ChallengeKey, phase: Phase) {
-  let accuracy = 0
+  let accuracy = 0;
   if (solves[challengeKey][phase]) {
     accuracy = 1 / solves[challengeKey].attempts[phase]
   }
   logger.info(`Accuracy for '${phase === 'fix it' ? 'Fix It' : 'Find It'}' phase of coding challenge ${colors.cyan(challengeKey)}: ${accuracy > 0.5 ? colors.green(accuracy.toString()) : (accuracy > 0.25 ? colors.yellow(accuracy.toString()) : colors.red(accuracy.toString()))}`)
-  return accuracy
+  return accuracy;
 }
 
 function storeVerdict (challengeKey: ChallengeKey, phase: Phase, verdict: boolean) {

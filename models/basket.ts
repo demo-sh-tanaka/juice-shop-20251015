@@ -14,7 +14,7 @@ import {
   type NonAttribute,
   type Sequelize
 } from 'sequelize'
-import { type ProductModel } from './product'
+import { type ProductModel } from './product';
 
 class Basket extends Model<
 InferAttributes<Basket>,
