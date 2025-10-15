@@ -523,7 +523,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
             context.instance[i].description = req.__(description)
           }
         }
-        return context.continue
+        return context.continue;
       })
       resource.read.send.before((req: Request, res: Response, context: { instance: { description: string, hint: string }, continue: any }) => {
         context.instance.description = req.__(context.instance.description)
@@ -566,12 +566,12 @@ restoreOverwrittenFilesWithOriginals().then(() => {
           context.instance[i].name = req.__(context.instance[i].name)
           context.instance[i].description = req.__(context.instance[i].description)
         }
-        return context.continue
+        return context.continue;
       })
       resource.read.send.before((req: Request, res: Response, context: { instance: { name: string, description: string }, continue: any }) => {
         context.instance.name = req.__(context.instance.name)
         context.instance.description = req.__(context.instance.description)
-        return context.continue
+        return context.continue;
       })
     }
 
@@ -581,7 +581,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
         status: 'success',
         data: context.instance
       }
-      return context.continue
+      return context.continue;
     })
   }
 
@@ -682,7 +682,7 @@ const mimeTypeMap: any = {
 const uploadToDisk = multer({
   storage: multer.diskStorage({
     destination: (req: Request, file: any, cb: any) => {
-      const isValid = mimeTypeMap[file.mimetype]
+      const isValid = mimeTypeMap[file.mimetype];
       let error: Error | null = new Error('Invalid mime type')
       if (isValid) {
         error = null
@@ -694,13 +694,13 @@ const uploadToDisk = multer({
         .toLowerCase()
         .split(' ')
         .join('-')
-      const ext = mimeTypeMap[file.mimetype]
+      const ext = mimeTypeMap[file.mimetype];
       cb(null, name + '-' + Date.now() + '.' + ext)
     }
   })
 })
 
-const expectedModels = ['Address', 'Basket', 'BasketItem', 'Captcha', 'Card', 'Challenge', 'Complaint', 'Delivery', 'Feedback', 'ImageCaptcha', 'Memory', 'PrivacyRequestModel', 'Product', 'Quantity', 'Recycle', 'SecurityAnswer', 'SecurityQuestion', 'User', 'Wallet', 'Hint']
+const expectedModels = ['Address', 'Basket', 'BasketItem', 'Captcha', 'Card', 'Challenge', 'Complaint', 'Delivery', 'Feedback', 'ImageCaptcha', 'Memory', 'PrivacyRequestModel', 'Product', 'Quantity', 'Recycle', 'SecurityAnswer', 'SecurityQuestion', 'User', 'Wallet', 'Hint'];
 while (!expectedModels.every(model => Object.keys(sequelize.models).includes(model))) {
   logger.info(`Entity models ${colors.bold(Object.keys(sequelize.models).length.toString())} of ${colors.bold(expectedModels.length.toString())} are initialized (${colors.yellow('WAITING')})`)
 }

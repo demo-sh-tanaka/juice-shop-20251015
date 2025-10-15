@@ -4,8 +4,8 @@
  */
 
 /* jslint node: true */
-import * as utils from '../lib/utils'
-import * as challengeUtils from '../lib/challengeUtils'
+import * as utils from '../lib/utils';
+import * as challengeUtils from '../lib/challengeUtils';
 import {
   Model,
   type InferAttributes,
@@ -14,7 +14,7 @@ import {
   type CreationOptional,
   type Sequelize
 } from 'sequelize'
-import { challenges } from '../data/datacache'
+import { challenges } from '../data/datacache';
 import * as security from '../lib/insecurity'
 
 class Feedback extends Model<

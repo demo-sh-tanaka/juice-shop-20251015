@@ -124,9 +124,9 @@ const CHALLENGE_KEYS = [
   'csafChallenge',
   'exposedCredentialsChallenge',
   'leakedApiKeyChallenge'
-] as const
+] as const;
 
-export type ChallengeKey = typeof CHALLENGE_KEYS[number]
+export type ChallengeKey = typeof CHALLENGE_KEYS[number];
 
 class Challenge extends Model<
 InferAttributes<Challenge>,

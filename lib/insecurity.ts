@@ -108,9 +108,9 @@ export const discountFromCoupon = (coupon?: string) => {
   const decoded = z85.decode(coupon)
   if (decoded && (hasValidFormat(decoded.toString()) != null)) {
     const parts = decoded.toString().split('-')
-    const validity = parts[0]
+    const validity = parts[0];
     if (utils.toMMMYY(new Date()) === validity) {
-      const discount = parts[1]
+      const discount = parts[1];
       return parseInt(discount)
     }
   }

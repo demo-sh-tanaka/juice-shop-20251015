@@ -20,7 +20,7 @@ export const makeKeyNonUpdatable = (model: Model, column: string) => {
 
     if (instance.isNewRecord) return
 
-    const changedKeys: unknown[] = []
+    const changedKeys: unknown[] = [];
 
     const instanceChanged = Array.from(instance._changed)
 
@@ -28,10 +28,10 @@ export const makeKeyNonUpdatable = (model: Model, column: string) => {
 
     if (changedKeys.length === 0) return
 
-    const validationErrors: ValidationErrorItemType[] = []
+    const validationErrors: ValidationErrorItemType[] = [];
 
     changedKeys.forEach((fieldName: any) => {
-      const fieldDefinition = instance.rawAttributes[fieldName]
+      const fieldDefinition = instance.rawAttributes[fieldName];
 
       if (
         instance._previousDataValues[fieldName] !== undefined &&
