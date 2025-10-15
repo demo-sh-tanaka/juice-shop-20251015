@@ -72,9 +72,10 @@ export const promotionVideo = () => {
       res.send(compiledTemplate)
     })
   }
-  function favicon () {
-    return utils.extractFilename(config.get('application.favicon'))
-  }
+}
+
+function favicon () {
+  return utils.extractFilename(config.get('application.favicon'))
 }
 
 function getSubsFromFile () {

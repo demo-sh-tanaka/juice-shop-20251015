@@ -13,6 +13,14 @@ import { challenges } from '../data/datacache'
 import * as security from '../lib/insecurity'
 import * as utils from '../lib/utils'
 
+function uniqueOrderNumber () {
+  return security.hash(`${(new Date()).toString()}_B2B`)
+}
+
+function dateTwoWeeksFromNow () {
+  return new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000)).toISOString()
+}
+
 export function b2bOrder () {
   return ({ body }: Request, res: Response, next: NextFunction) => {
     if (utils.isChallengeEnabled(challenges.rceChallenge) || utils.isChallengeEnabled(challenges.rceOccupyChallenge)) {
@@ -35,13 +43,5 @@ export function b2bOrder () {
     } else {
       res.json({ cid: body.cid, orderNo: uniqueOrderNumber(), paymentDue: dateTwoWeeksFromNow() })
     }
-  }
-
-  function uniqueOrderNumber () {
-    return security.hash(`${(new Date()).toString()}_B2B`)
-  }
-
-  function dateTwoWeeksFromNow () {
-    return new Date(new Date().getTime() + (14 * 24 * 60 * 60 * 1000)).toISOString()
   }
 }

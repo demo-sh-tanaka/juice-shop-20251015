@@ -7,6 +7,23 @@ import locales from '../data/static/locales.json'
 import fs from 'node:fs'
 import { type Request, type Response, type NextFunction } from 'express'
 
+async function calcPercentage (fileContent: any, enContent: any): Promise<number> {
+  const totalStrings = Object.keys(enContent).length
+  let differentStrings = 0
+  return await new Promise((resolve, reject) => {
+    try {
+      for (const key in fileContent) {
+        if (Object.prototype.hasOwnProperty.call(fileContent, key) && fileContent[key] !== enContent[key]) {
+          differentStrings++
+        }
+      }
+      resolve((differentStrings / totalStrings) * 100)
+    } catch (err) {
+      reject(err)
+    }
+  })
+}
+
 export function getLanguageList () { // TODO Refactor and extend to also load backend translations from /i18n/*json and calculate joint percentage/gauge
   return (req: Request, res: Response, next: NextFunction) => {
     const languages: Array<{ key: string, lang: any, icons: string[], shortKey: string, percentage: unknown, gauge: string }> = []
@@ -53,22 +70,5 @@ export function getLanguageList () { // TODO Refactor and extend to also load ba
         })
       })
     })
-
-    async function calcPercentage (fileContent: any, enContent: any): Promise<number> {
-      const totalStrings = Object.keys(enContent).length
-      let differentStrings = 0
-      return await new Promise((resolve, reject) => {
-        try {
-          for (const key in fileContent) {
-            if (Object.prototype.hasOwnProperty.call(fileContent, key) && fileContent[key] !== enContent[key]) {
-              differentStrings++
-            }
-          }
-          resolve((differentStrings / totalStrings) * 100)
-        } catch (err) {
-          reject(err)
-        }
-      })
-    }
   }
 }
