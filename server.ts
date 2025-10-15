@@ -153,7 +153,7 @@ const collectDurationPromise = (name: string, func: (...args: any) => Promise<an
       return res
     } catch (err) {
       console.error('Error in timed startup function: ' + name, err)
-      throw err
+      throw err;
     }
   }
 }
@@ -255,7 +255,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
           } else {
             relativePath = relativePath.replace('..', '.')
           }
-          return 'a href="' + relativePath + '"'
+          return 'a href="' + relativePath + '"';
         })
       }
       // @ts-expect-error FIXME passed argument has wrong type
@@ -505,7 +505,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
         WalletModel.create({ UserId: context.instance.id }).catch((err: unknown) => {
           console.log(err)
         })
-        return context.continue // vuln-code-snippet neutral-line registerAdminChallenge
+        return context.continue; // vuln-code-snippet neutral-line registerAdminChallenge
       }) // vuln-code-snippet neutral-line registerAdminChallenge
     } // vuln-code-snippet neutral-line registerAdminChallenge
     // vuln-code-snippet end registerAdminChallenge
@@ -527,7 +527,7 @@ restoreOverwrittenFilesWithOriginals().then(() => {
       })
       resource.read.send.before((req: Request, res: Response, context: { instance: { description: string, hint: string }, continue: any }) => {
         context.instance.description = req.__(context.instance.description)
-        return context.continue
+        return context.continue;
       })
     }
 
@@ -537,11 +537,11 @@ restoreOverwrittenFilesWithOriginals().then(() => {
         for (let i = 0; i < context.instance.length; i++) {
           context.instance[i].question = req.__(context.instance[i].question)
         }
-        return context.continue
+        return context.continue;
       })
       resource.read.send.before((req: Request, res: Response, context: { instance: { question: string }, continue: any }) => {
         context.instance.question = req.__(context.instance.question)
-        return context.continue
+        return context.continue;
       })
     }
 
@@ -551,11 +551,11 @@ restoreOverwrittenFilesWithOriginals().then(() => {
         for (let i = 0; i < context.instance.length; i++) {
           context.instance[i].text = req.__(context.instance[i].text)
         }
-        return context.continue
+        return context.continue;
       })
       resource.read.send.before((req: Request, res: Response, context: { instance: { text: string }, continue: any }) => {
         context.instance.text = req.__(context.instance.text)
-        return context.continue
+        return context.continue;
       })
     }
 

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: MIT
  */
 
-import config from 'config'
-import colors from 'colors/safe'
+import config from 'config';
+import colors from 'colors/safe';
 import { retrieveCodeSnippet } from '../routes/vulnCodeSnippet'
 import { readFixes } from '../routes/vulnCodeFixes'
 import { type Challenge } from '../data/types'

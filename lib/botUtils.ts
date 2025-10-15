@@ -2,12 +2,12 @@
  * Copyright (c) 2014-2025 Bjoern Kimminich & the OWASP Juice Shop contributors.
  * SPDX-License-Identifier: MIT
  */
-import { ProductModel } from '../models/product'
-import { type Product } from '../data/types'
-import fuzz from 'fuzzball'
-import { challenges } from '../data/datacache'
-import * as security from './insecurity'
-import * as challengeUtils from './challengeUtils'
+import { ProductModel } from '../models/product';
+import { type Product } from '../data/types';
+import fuzz from 'fuzzball';
+import { challenges } from '../data/datacache';
+import * as security from './insecurity';
+import * as challengeUtils from './challengeUtils';
 
 export async function productPrice (query: string, user: string) {
   const products = await ProductModel.findAll()
